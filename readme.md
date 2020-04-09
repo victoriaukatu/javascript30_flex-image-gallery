@@ -9,5 +9,7 @@ Main view:
 When a panel is clicked:
 ![](flex-expanded.jpg)
 
+![](flex-expanded-2.jpg)
+
 SUMMARY:
 In this exercise I got to practice my CSS flexbox skills. I enjoyed using transitions plus flex properties to create a cool effect when each panel is clicked on. 
