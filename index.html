@@ -52,18 +52,17 @@
       flex-direction: column; /* This vertically centers the word flex items in the middle of the panel stacked on each other, vs. default is left to right */
     }
 
-    .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
-    .panel2 { background-image:url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500); }
-    .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
-    .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
-    .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
+    .panel1 { background-image:url(https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80); }
+    .panel2 { background-image:url(https://images.unsplash.com/photo-1524274165673-750e79bf7e2e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60); }
+    .panel3 { background-image:url(https://images.unsplash.com/photo-1534020648772-c2e35b064bd6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80); }
+    .panel4 { background-image:url(https://images.unsplash.com/photo-1464693117936-6dada4d0523b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80); }
+    .panel5 { background-image:url(https://images.unsplash.com/photo-1520637102912-2df6bb2aec6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80); }
 
     /* Flex Children */
     .panel > * {
       margin: 0;
       width: 100%;
       transition: transform 0.5s;
-      border: 1px solid red;
       flex: 1 0 auto; /* evenly distribute space among the children */
       display: flex; /* default display flex aligns it left, which is why we also add justify-content and align-items */
       justify-content: center;
@@ -123,10 +122,23 @@
   </div>
 
   <script>
+    const panels = document.querySelectorAll('.panel');
+    function toggleOpen() {
+      this.classList.toggle('open');
+    }
 
+    function toggleActive(event) {
+      /* We need this if statement because there are two transitions happening, font size gets bigger and flex grow */
+      /* So we specify that we want the toggle to happen after the flex transition is done */
+      /* If we don't specify, it won't work; we need to tell it which transition to wait for. Keep this in mind when using transitionend */ 
+      if (event.propertyName.includes('flex')){
+        this.classList.toggle('open-active');
+      }  
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
   </script>
-
-
 
 </body>
 </html>
