@@ -46,9 +46,10 @@
       background-size: cover;
       background-position: center;
       flex: 1;  /* The 1 means distribute the remaining space evenly among the children */
-      justify-content: center; /* This center the word content left to right */
+      justify-content: center; /* This center the word content left to right within each panel */
       align-items: center;
-      display: flex;
+      display: flex; /* This makes panel into a flex container */
+      flex-direction: column; /* This vertically centers the word flex items in the middle of the panel stacked on each other, vs. default is left to right */
     }
 
     .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
@@ -63,7 +64,16 @@
       width: 100%;
       transition: transform 0.5s;
       border: 1px solid red;
+      flex: 1 0 auto; /* evenly distribute space among the children */
+      display: flex; /* default display flex aligns it left, which is why we also add justify-content and align-items */
+      justify-content: center;
+      align-items: center;
     }
+
+    .panel > *:first-child { transform: translateY(-100%); } /* This puts the first flex item up so it's hidden off-screen */
+    .panel.open-active > *:first-child { transform: translateY(0); } /* This returns the flex item to original place, so it looks like it's sliding into place when this class is added */
+    .panel > *:last-child { transform: translateY(100%); } /* This drops the flex item down so it's hidden off-screen */
+    .panel.open-active > *:last-child { transform: translateY(0); } 
 
     .panel p {
       text-transform: uppercase;
@@ -78,6 +88,7 @@
 
     .panel.open {
       font-size: 40px;
+      flex: 5; /* This flex item is going to take up 5x the amount of extra room as the rest of the children */
     }
 
   </style>
