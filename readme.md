@@ -2,9 +2,11 @@
 
 Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 
+Main view:
 ![](flex.jpg)
 
 
+When a panel is clicked:
 ![](flex-expanded.jpg)
 
 SUMMARY:
